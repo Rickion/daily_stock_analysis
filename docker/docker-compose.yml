@@ -49,3 +49,14 @@ services:
       - "caddy.reverse_proxy=http://localhost:7007"
     ports:
       - "7007:8000"
+    environment:
+      - STOCK_LIST=${STOCK_LIST}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - WECHAT_WEBHOOK_URL=${WECHAT_WEBHOOK_URL}
+      - SCHEDULE_ENABLED=${SCHEDULE_ENABLED}
+      - SCHEDULE_TIME=${SCHEDULE_TIME}
+      - REPORT_TYPE=${REPORT_TYPE}
+      - WEBUI_HOST=${WEBUI_HOST}
+      - WEBUI_PORT=${WEBUI_PORT}
+      - ADMIN_AUTH_ENABLED=${ADMIN_AUTH_ENABLED}
