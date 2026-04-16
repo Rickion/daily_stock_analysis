@@ -63,18 +63,36 @@ services:
       - ADMIN_AUTH_ENABLED=${ADMIN_AUTH_ENABLED}
       - MINIMAX_API_KEYS=${MINIMAX_API_KEYS}
 
-  analyzer:
+  analyzer-a:
     <<: *common
-    container_name: stock-analyzer
+    container_name: stock-analyzer-a
     command: python main.py --schedule
     environment:
-      - STOCK_LIST=${STOCK_LIST}
+      - STOCK_LIST=${STOCK_LIST_A}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - OPENAI_BASE_URL=${OPENAI_BASE_URL}
       - LITELLM_MODEL=${LITELLM_MODEL}
       - WECHAT_WEBHOOK_URL=${WECHAT_WEBHOOK_URL}
       - SCHEDULE_ENABLED=true
-      - SCHEDULE_TIME=${SCHEDULE_TIME:-18:00}
+      - SCHEDULE_TIME=${SCHEDULE_TIME_A:-18:00}
+      - SCHEDULE_RUN_IMMEDIATELY=${SCHEDULE_RUN_IMMEDIATELY:-true}
+      - REPORT_TYPE=${REPORT_TYPE:-full}
+      - TRADING_DAY_CHECK_ENABLED=${TRADING_DAY_CHECK_ENABLED:-true}
+      - MINIMAX_API_KEYS=${MINIMAX_API_KEYS}
+
+
+  analyzer-h:
+    <<: *common
+    container_name: stock-analyzer-h
+    command: python main.py --schedule
+    environment:
+      - STOCK_LIST=${STOCK_LIST_H}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - LITELLM_MODEL=${LITELLM_MODEL}
+      - WECHAT_WEBHOOK_URL=${WECHAT_WEBHOOK_URL}
+      - SCHEDULE_ENABLED=true
+      - SCHEDULE_TIME=${SCHEDULE_TIME_H:-18:00}
       - SCHEDULE_RUN_IMMEDIATELY=${SCHEDULE_RUN_IMMEDIATELY:-true}
       - REPORT_TYPE=${REPORT_TYPE:-full}
       - TRADING_DAY_CHECK_ENABLED=${TRADING_DAY_CHECK_ENABLED:-true}
